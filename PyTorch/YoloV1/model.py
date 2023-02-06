@@ -6,7 +6,9 @@ architecture_config =[   #One Tuple represents (kernel_size, filters for output,
     (7,64,2,3),
     "MP",
     (3,192,1,1),
+    "MP",
     (1,128,1,0),
+    (3,256,1,1),
     (1,256,1,0),
     (3,512,1,1),
     "MP",
@@ -29,10 +31,7 @@ class CNN_Layers(torch.nn.Module):
         self.leakyrelu = torch.nn.LeakyReLU(0.1)
 
     def forward(self,x):
-        x=self.conv
-        x=self.batchnorm(x)
-        x=self.leakyrelu(x)
-        return x
+        return self.leakyrelu(self.batchnorm(self.conv(x)))
 
 class Yolo(torch.nn.Module):
     def __init__(self, in_channels=3, **kwargs):   #for rgb images
@@ -52,8 +51,9 @@ class Yolo(torch.nn.Module):
         for x in architecture:
             if type(x) == tuple:
                 layers += [CNN_Layers(in_channels, out_channels=x[1], kernel_size=x[0], stride=x[2], padding=x[3])]
+                in_channels = x[1]
             elif(type(x)==str):
-                layers+=[torch.nn.MaxPool2d(kernel_size=2, stride=2)]
+                layers+=[torch.nn.MaxPool2d(kernel_size=(2,2), stride=(2,2))]
             elif(type(x)==list):
                 conv1=x[0]
                 conv2=x[1] 
@@ -61,8 +61,8 @@ class Yolo(torch.nn.Module):
                 for j in range(num_repeating):
                     layers+=[CNN_Layers(in_channels, out_channels=conv1[1], kernel_size=conv1[0], stride=conv1[2], padding=conv1[3])]
                     layers+=[CNN_Layers(in_channels=conv1[1], out_channels=conv2[1], kernel_size=conv2[0], stride=conv2[2], padding=conv2[3])]
-                    in_channels=conv2[1] #the output of the previous layer will be the input of the current layer hence the out_channels of previous conv layer is the input_channel of the current one
-        return torch.nn.Sequential(*layers) #Unpacks the list and converts the layers into torch Sequential type
+                    in_channels=conv2[1]      #the output of the previous layer will be the input of the current layer hence the out_channels of previous conv layer is the input_channel of the current one
+        return torch.nn.Sequential(*layers)   #Unpacks the list and converts the layers into torch Sequential type
 
     def create_fcs(self, split_size, num_boxes, num_classes):
         S, B, C = split_size, num_boxes, num_classes
@@ -71,13 +71,13 @@ class Yolo(torch.nn.Module):
                                    torch.nn.Linear(1024*S*S, 496), #In the original paper it is 4096 instead of 496, but we are keeping that number to prevent VRAM for being filled
                                    torch.nn.Dropout(p=0.5),
                                    torch.nn.LeakyReLU(0.1),
-                                   torch.nn.Linear(496, S*S*(C+B*5))
+                                   torch.nn.Linear(496, S*S*(C+B*5)),
                                   )
 
-def test(S=7, B=2, C=3):
+def trial(S=7, B=2, C=1):                 #In case just to verify the model is actually getting built and inference on this shape is happening
     model = Yolo(split_size=S, num_boxes=B, num_classes=C)
-    x = torch.randn((3, 224, 224))
-    print(model(x))
+    x = torch.randn((1, 3, 448, 448))     #As per the paper, the input dimensions of the image would be 448 x 448 of RGB 
+    print(model(x).shape)
 
-test()
+
 
