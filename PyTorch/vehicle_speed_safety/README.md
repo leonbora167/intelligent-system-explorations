@@ -14,8 +14,16 @@ Vehicle detection and other object detections tasks to be taken care of by **YOL
 
 ## Vehicle Tracking
 
+1. Track Vehicles using SORT + YOLOv5
+
 ```Python
 python track1.py --input cars.mp4 --output F
 ```
 ![[VIDEO](https://imgur.com/zw0VZkl)](https://i.imgur.com/zw0VZkl.gif)
+
+2. Addition of script to save results to csv
+
+```Python
+python track2.py --input cars.mp4 --output results.csv
+```
 
