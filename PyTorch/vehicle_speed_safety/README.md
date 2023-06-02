@@ -17,4 +17,5 @@ Vehicle detection and other object detections tasks to be taken care of by **YOL
 ```Python
 python track1.py --input cars.mp4 --output F
 ```
-![Video](https://drive.google.com/file/d/1fkt0M97OjrQAcqA8AK0dyT44vwfVuzea/view?usp=drive_link)
+[![Video](https://img.youtube.com/vi/1fkt0M97OjrQAcqA8AK0dyT44vwfVuzea/0.jpg)](https://drive.google.com/file/d/1fkt0M97OjrQAcqA8AK0dyT44vwfVuzea/view)
+
