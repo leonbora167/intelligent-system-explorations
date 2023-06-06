@@ -26,4 +26,11 @@ python track1.py --input cars.mp4 --output F
 ```Python
 python track2.py --input cars.mp4 --output results.csv
 ```
+3. Vehicle Speed Detection with Safety Detection to csv
 
+```Python
+python speed_det.py --input test2.mp4 --output speed.csv --output2 safe.csv
+```
+![[VIDEO](https://imgur.com/EFhfaws)](https://i.imgur.com/EFhfaws.gif)
+
+<a href="https://drive.google.com/uc?export=view&id=1p1OwtVQBapetK4RCPF7lI2m2yuioRKSE"><img src="https://drive.google.com/uc?export=view&id=1p1OwtVQBapetK4RCPF7lI2m2yuioRKSE" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
