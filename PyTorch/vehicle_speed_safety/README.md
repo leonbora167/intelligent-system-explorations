@@ -31,6 +31,14 @@ python track2.py --input cars.mp4 --output results.csv
 ```Python
 python speed_det.py --input test2.mp4 --output speed.csv --output2 safe.csv
 ```
-![[VIDEO](https://imgur.com/EFhfaws)](https://i.imgur.com/EFhfaws.gif)
+![[VIDEO](https://imgur.com/ro6t7dU)](https://i.imgur.com/ro6t7dU.gif)
 
-<a href="https://drive.google.com/uc?export=view&id=1p1OwtVQBapetK4RCPF7lI2m2yuioRKSE"><img src="https://drive.google.com/uc?export=view&id=1p1OwtVQBapetK4RCPF7lI2m2yuioRKSE" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+![[VIDEO](https://i.imgur.com/ubz8OJz.png)](https://i.imgur.com/ubz8OJz.png)
+
+:question: Check if improving tracking (removing false positives) gets better speed results
+
+4. Training Code present in **train.ipynb**
+
+5 Code to determine pixel_meter_ratio is in **pixel2meter_ratio.ipynb**
+
+:exclamation: Currently using vertical axis, the idea of using horizontal bounding boxes to determine the length of the car is a better option since there would be very less disparity or rounding off. 
