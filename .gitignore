@@ -6,3 +6,6 @@
 /.vscode
 /Books/deep-learning-with-python/dataset
 /Books/deep-learning-with-python/pizza_not_pizza
+/PyTorch/test
+/PyTorch/train
+/PyTorch/val
