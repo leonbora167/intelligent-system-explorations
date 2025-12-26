@@ -1,4 +1,5 @@
 import yt_dlp
+import sys
 
 def my_progress_hook(d):
     """
@@ -39,5 +40,9 @@ def video_download(video_url):
         print(f"Error occured : {e}")
 
 if __name__ == "__main__":
-    video_url = "https://youtu.be/6gaQpa_B3-Q?si=vGWOYdvWnc6KUgDY"
+    if len(sys.argv) < 2:
+        print("❌ No video URL provided")
+        sys.exit(1)
+
+    video_url = sys.argv[1]
     video_download(video_url)

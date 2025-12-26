@@ -36,6 +36,7 @@ Rules :-
 - If the clip is unclear or ambigiuous, state the uncertainity 
 - Focus on actions, objects, people, interactions, motion and scene changes 
 - Be concise and precise 
+- Try not to hallucinate and have issues with the end tokens. Meaning, do not keep on repeating information more than once in your response.
 
 Question :- Describe me what is happening the video given to you. 
 '''
