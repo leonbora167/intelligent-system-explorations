@@ -17,8 +17,6 @@ Instead of one features, the models like SlowFast, MViT are temporal based which
 ![Condition1](condition1.jpg)
 
 - Description of each chunk leads to local understanding for each clip. 
-:grey_question: Does it lead to global understanding of whole video - Summary.
+- Does it lead to global understanding of whole video - Summary.
 - As a human we are pertrained to understanding with previous contexts for nearly everything. 
-:grey_exclamation: Just sending description of every 6s is enough or will it be missing lots of temporal information.
-
-
+- Just sending description of every 6s is enough or will it be missing lots of temporal information.
