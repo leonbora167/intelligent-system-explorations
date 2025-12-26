@@ -1,5 +1,7 @@
 # Video Understanding through LLM
 
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)  ![HuggingFace](https://img.shields.io/badge/huggingface-%23FFD21E.svg?style=for-the-badge&logo=huggingface&logoColor=white)
+
 * Goal is to convert raw video -> semantic understanding -> Summary 
 
 - On a general level, video understanding through deep learning models take place with the help of shared feature extraction. 
@@ -28,6 +30,8 @@ Instead of one features, the models like SlowFast, MViT are temporal based which
 - The reconcile file takes these descriptions, concatenates them and sends them to the llm (preferably another one which is more handled to text based work rather than vision based)
 
 ![Demo1](flow1_demo.gif)
+
+![Streamlit](https://img.shields.io/badge/Streamlit-%23FE4B4B.svg?style=for-the-badge&logo=streamlit&logoColor=white)
 
 ```python
 streamlit run app.py
