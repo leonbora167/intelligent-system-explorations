@@ -34,3 +34,10 @@ streamlit run app.py
 ```
 
 > Enter the link of the Youtube video you need the summary for. Make sure that the video is a public one and not private.
+
+![Flow II](flow2.jpg)
+
+- [] Instead of using individual video description, the idea would be to send each video clip to the vlm along with the previous clips contexts. 
+A bit change on the prompt would be required. 
+- The idea is that will be the vlm understand and make better generalization of whats happening in the video if it has an idea of what has happened previously ?
+- [] Would cost a lot of overhead in token size though. Compute wise might be difficult for the local machine. 
