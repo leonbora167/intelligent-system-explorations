@@ -20,3 +20,17 @@ Instead of one features, the models like SlowFast, MViT are temporal based which
 - Does it lead to global understanding of whole video - Summary.
 - As a human we are pertrained to understanding with previous contexts for nearly everything. 
 - Just sending description of every 6s is enough or will it be missing lots of temporal information.
+
+![Output CSV Screenshot](csv_screenshot.png)
+
+- These are the llm responses. 
+- Each response pertains to description of one video 
+- The reconcile file takes these descriptions, concatenates them and sends them to the llm (preferably another one which is more handled to text based work rather than vision based)
+
+![Demo1](flow1_demo.gif)
+
+```python
+streamlit run app.py
+```
+
+> Enter the link of the Youtube video you need the summary for. Make sure that the video is a public one and not private.
