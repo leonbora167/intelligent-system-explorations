@@ -16,3 +16,8 @@
 /LLM/Video_Understanding/models
 /LLM/Video_Understanding/video_chunks
 .env
+/LLM/Theory/data_folder
+/LLM/Theory/models
+/LLM/Theory/results
+/computer_vision/conceptual/pc_parts
+/LLM/Templates/models
