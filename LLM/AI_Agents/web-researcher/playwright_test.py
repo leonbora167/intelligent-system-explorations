@@ -1,6 +1,6 @@
 from playwright.sync_api import sync_playwright
 
-web_url = "https://en.wikipedia.org/wiki/Lego_Batman:_Legacy_of_the_Dark_Knight"
+web_url = "https://en.wikipedia.org/wiki/Metal_Gear_Solid"
 
 with sync_playwright() as p:
     browser = p.chromium.launch()

@@ -24,3 +24,4 @@
 /LLM/Templates/__pycache__
 /LLM/AI_Agents/web-researcher/src/web_researcher/pipeline_v1/__pycache__
 LLM/AI_Agents/web-researcher/src/web_researcher/pipeline_v1/page_content.html
+LLM/AI_Agents/web-researcher/page_content.html

@@ -13,7 +13,7 @@ def html_extract():
     content = content + ' Title is : ' + page_main_title + '\n'
     all_paragraphs = soup.find_all("p")
     for index, paragraph in enumerate(all_paragraphs):
-        content = str(index) + '\t' + paragraph.text + "\n"
+        content = content + str(index) + '\t' + paragraph.text + "\n"
     return content
         
 
@@ -24,5 +24,4 @@ url_lists = query_to_url(user_query)
 for web_url in url_lists:
     url_to_html(web_url)
     page_paragraph_content = html_extract()
-    print(page_paragraph_content)
     
