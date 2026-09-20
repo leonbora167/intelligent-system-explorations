@@ -3,10 +3,14 @@ from langchain_core.messages import SystemMessage, HumanMessage
 from ddgs import DDGS
 
 
-model_name = "qwen3.5:4b"
+summarizer_model_name = "llama3.2:1b"
+scorer_model_name = "qwen3.5:4b"
 
-summarizer_llm = ChatOllama(model = model_name,
+summarizer_llm = ChatOllama(model = summarizer_model_name,
                  temperature = 0.1)
+
+scorer_model = ChatOllama(model = scorer_model_name,
+                          temperature = 0.5)
 
 def query_to_url(query):
     '''
@@ -32,4 +36,13 @@ def paragraph_summary(page_content, system_instructions, temperature, user_query
         HumanMessage(content=payload)
     ]
     response = summarizer_llm.invoke(prompt)
+    return response
+
+def summary_scorer(summaries, system_instructions, user_query):
+    payload = f"USER QUERY : {user_query} \n\nSUMMARIES : \n\n{summaries}"
+    prompt = [
+        SystemMessage(content=system_instructions),
+        HumanMessage(content = payload)
+    ]
+    response = scorer_model.invoke(prompt)
     return response
