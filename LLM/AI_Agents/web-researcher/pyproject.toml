@@ -6,8 +6,9 @@ readme = "README.md"
 authors = [
     { name = "Prishanga Prayus Bora", email = "prishanga1@gmail.com" }
 ]
-requires-python = ">=3.14"
+requires-python = ">=3.11,<3.12"
 dependencies = [
+    "arize-phoenix>=14.10.0",
     "beautifulsoup4>=4.15.0",
     "crewai>=1.15.22",
     "ddgs>=9.14.4",
