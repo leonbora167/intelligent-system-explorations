@@ -5,9 +5,10 @@ from web_helpers import paragraph_summary
 import yaml
 from tqdm import tqdm
 from web_helpers import summary_scorer
+from web_helpers import tracer
 
 config_path = "llm_config.yaml"
-summarization_model = "llama3.2:1b"
+summarization_model = "nemotron-3-nano:4b"
 scorer_model = "gemma4:34b"
 
 def html_extract():
@@ -44,35 +45,39 @@ def get_metadata(llm_response):
     output_tokens = usage_metadata["output_tokens"]
     total_tokens = usage_metadata["total_tokens"]
 
-user_query = "Metal Gear Solid"
+user_query = "Batman"
 
 url_lists = query_to_url(user_query)
 print("URL Lists are ", url_lists)
 progress_bar_description = f"Summarising Web Pages for {user_query}"
 
-for web_url in tqdm(url_lists, 
-                    desc=progress_bar_description,
-                    colour="green",
-                    dynamic_ncols=True,
-                    unit="site"):
+with tracer.start_as_current_span("Web Research Query",
+                                  openinference_span_kind="chain") as root_span:
+    root_span.set_input({"query" : user_query})
 
-    summaries = ''
+    for web_url in tqdm(url_lists, 
+                        desc=progress_bar_description,
+                        colour="green",
+                        dynamic_ncols=True,
+                        unit="site"):
 
-    webpage_load = url_to_html(web_url)
-    if webpage_load == 0:
-        continue
-    page_paragraph_content = html_extract()
-    model_config = get_prompt_config(config_path, "summarization", summarization_model)
-    system_instructions = model_config.get("system_instructions")
-    #print(system_instructions)
-    temperature = float(model_config.get("temperature"))
-    
-    llm_response = paragraph_summary(page_paragraph_content, system_instructions, temperature, user_query)
-    page_summary = llm_response.content
+        summaries = ''
 
-    #Placeholder to write and save llm metadata in future
+        webpage_load = url_to_html(web_url)
+        if webpage_load == 0:
+            continue
+        page_paragraph_content = html_extract()
+        model_config = get_prompt_config(config_path, "summarization", summarization_model)
+        system_instructions = model_config.get("system_instructions")
+        #print(system_instructions)
+        temperature = float(model_config.get("temperature"))
+        
+        llm_response = paragraph_summary(page_paragraph_content, system_instructions, temperature, user_query)
+        page_summary = llm_response.content
 
-    summaries = summaries + page_summary + "\n"
+        #Placeholder to write and save llm metadata in future
+
+        summaries = summaries + page_summary + "\n"
 
 print("All summaries gathered")
 

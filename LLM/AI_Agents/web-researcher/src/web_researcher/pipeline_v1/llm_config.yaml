@@ -1,7 +1,7 @@
 tasks:
   summarization:
     models: 
-      llama3.2:1b:
+      nemotron-3-nano:4b:
         system_instructions: "You are a web research agent. You have a good amount of general knowledge and really strong grasp over the english language. >
                               Your task is to analyze the content given to you and return a technical, executive and comprehensive summary for the particular content. > 
                               As an input you will be provided the USER QUERY along with the Page Title of the html page and the raw paragraph data extracted from the html content of the page. >
